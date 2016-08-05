@@ -39,8 +39,8 @@ class FourInARowReader(Reader):
     """
     """
     
-    def __init__(self):
-        pass
+    def __init__(self, game):
+        self.game = game
     
     def process_input_line(self, input_string):
         """
@@ -51,19 +51,19 @@ class FourInARowReader(Reader):
 
         if words[0] == 'settings':
             if words[1] == 'timebank':
-                return self.timebank(words[2])
+                return self.game.timebank(words[2])
             elif words[1] == 'time_per_move':
-                return self.time_per_move(words[2])
+                return self.game.time_per_move(words[2])
             elif words[1] == 'player_names':
-                return self.player_names(words[2:])
+                return self.game.player_names(words[2:])
             elif words[1] == 'your_bot':
-                return self.your_bot(words[2])
+                return self.game.your_bot(words[2])
             elif words[1] == 'your_botid':
-                return self.your_botid(words[2])
+                return self.game.your_botid(words[2])
             elif words[1] == 'field_columns':
-                return self.field_columns(words[2])
+                return self.game.field_columns(words[2])
             elif words[1] == 'field_rows':
-                return self.field_rows(words[2])
+                return self.game.field_rows(words[2])
             else:
                 raise ValueError('Incorrect settings argument: {}'.format(words[1]))
         elif words[0] == 'update':
